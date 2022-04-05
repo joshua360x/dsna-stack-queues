@@ -48,7 +48,6 @@ class Queue {
 
   // hasNext to know whether item exists or not
   hasNext() {
-
     if (this.items) {
       return true;
     }
@@ -69,3 +68,78 @@ console.log(queue.hasNext()); // true
 console.log(queue.dequeue()); // 'llama'
 console.log(queue.hasNext()); // false
 console.log(queue.dequeue()); // null
+
+class LinkedListNode {
+  constructor(value) {
+    // create a head that will count towards intial value
+    this.head = {
+      value,
+      // the next will point towards the upcoming value
+      next: null,
+    };
+    this.tail = this.head;
+    // keept track of the length
+    this.length = 1;
+  }
+
+  // we need 3 instances add, remove, getList
+
+  // add
+  add(value) {
+    const newNode = {
+      value,
+      next: null,
+    };
+    this.tail.next = newNode;
+    this.tail = newNode;
+    this.length++;
+    return this;
+  }
+
+  // remove
+  remove(value) {
+    // same thing as a add but the opposite
+    const newNode = {
+      value,
+      next: null,
+    };
+  }
+
+  // getList
+  getList() {
+    // if there is nothing next then return nothing
+    // if (!this.next) {
+    //   return
+    // } else {
+    //   return this.value + this.next.getList()
+    // }
+    // return this.head.value
+    // while(this.head) {
+    //   arr.push(this.head.value)
+    // }
+    // return arr
+
+    // take an array and push value to an empty array
+    // let arr = []
+    // arr.push(this.head.value)
+    // // return an array that has values
+    // return arr;
+
+    // return this
+    return this;
+  }
+}
+
+const root = new LinkedListNode('A');
+const nodeB = new LinkedListNode('B');
+root.add(nodeB);
+console.log(root.getList()); // 'A B'
+const nodeC = new LinkedListNode('C');
+const nodeD = new LinkedListNode('D');
+const nodeE = new LinkedListNode('E');
+root.add(nodeC);
+root.add(nodeD);
+root.add(nodeE);
+console.log(root.getList()); // 'A B C D E'
+root.remove(1);
+console.log(root.getList()); // 'A C D E'
