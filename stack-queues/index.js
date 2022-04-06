@@ -143,3 +143,60 @@ root.add(nodeE);
 console.log(root.getList()); // 'A B C D E'
 root.remove(1);
 console.log(root.getList()); // 'A C D E'
+
+class PersonTreeNode {
+  constructor(person) {
+    this.value = person.name;
+    this.person = person;
+    this.left = null;
+    this.right = null;
+  }
+
+  add(node) {
+    // implemented as in previous challenge
+    const newNode = {
+      person,
+      left: this.left,
+      right: this.right,
+    };
+
+    // this value represents how if this value is null then set it equal to that new node that is defined
+    if (this.value === null) {
+      this.value = newNode;
+      // else we set the person equal to the node values
+    } else {
+      this.person = node;
+    }
+    // this.tail.next = newNode;
+    // this.tail = newNode;
+    // this.length++;
+    // return this;
+
+    // a second if check for sorting methodology
+    if (this.left > this.right) {
+      this.next = node;
+    } else {
+      this.next.add(node);
+    }
+  }
+
+  findPerson(name) {
+    // Implement me!
+    // if the name exists then we return the person
+    if (name) {
+      return this;
+    }
+  }
+}
+
+// "root" is the node at the root of the tree (the tree)
+let person = root.find('Nelson');
+// person looks like
+// {
+//   name: 'Nelson',
+//   phone: '555-1212',
+//   address: '123 Main St'
+// }
+
+let person2 = root.find('Foo');
+// person2 is null
